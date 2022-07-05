@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
       {
         cout << "[OK] "
              << "License key is valid: "
-             << "code=" << meta.at("constant").as_string() << " "
+             << "code=" << meta.at("code").as_string() << " "
              << "id=" << data.at("id").as_string()
              << endl;
       }
@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
       {
         cerr << "[ERROR] "
              << "License key is not valid: "
-             << "code=" << meta.at("constant").as_string()
+             << "code=" << meta.at("code").as_string()
              << endl;
       }
     })
