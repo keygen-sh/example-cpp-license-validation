@@ -3,7 +3,7 @@ This is an example C++ program for validating a license key. It contains a
 small command line program which prompts for a license key value and then
 validates the key using Keygen's cloud software licensing API.
 
-## Running the example
+## Running the example on MacOS
 
 First up, add an environment variable containing your account ID:
 ```bash
@@ -15,17 +15,17 @@ You can either run each line above within your terminal session before
 starting the app, or you can add the above contents to your `~/.bashrc`
 file and then run `source ~/.bashrc` after saving the file.
 
-First up, on macOS, install [`cpprestsdk`](https://github.com/Microsoft/cpprestsdk) using `homebrew`.
+First up, install [`cpprestsdk`](https://github.com/Microsoft/cpprestsdk) using `homebrew`.
 ```bash
 brew install cpprestsdk
 ```
 
-Next, on macOS, install OpenSSL v1.0.2p using `homebrew`.
+Next, install OpenSSL v1.0.2p using `homebrew`.
 ```bash
 brew install openssl@1.0.2
 ```
 
-Next, on macOS, compile the source using `g++`:
+Next, compile the source using `g++`:
 ```bash
 g++ main.cpp -o bin.out \
   -std=c++17 \
@@ -45,6 +45,34 @@ g++ main.cpp -o bin.out \
 Then run the script, passing in a `key` as the first argument:
 ```bash
 ./bin.out "{KEYGEN_LICENSE_KEY}"
+```
+
+## Running on Ubuntu
+
+First up, add an environment variable containing your account ID:
+```bash
+# Your Keygen account ID
+export KEYGEN_ACCOUNT_ID="YOUR_KEYGEN_ACCOUNT_ID"
+```
+
+First up, install [`cpprestsdk`](https://github.com/Microsoft/cpprestsdk) using `apt`.
+```bash
+sudo apt install libcpprest-dev
+```
+
+Next, install OpenSSL using `apt`.
+```bash
+sudo apt install libssl-dev
+```
+
+Next, compile the source using `cmake`:
+```bash
+cmake -B build . && cmake --build build
+```
+
+Then run the script, passing in a `key` as the first argument:
+```bash
+./build/main "{KEYGEN_LICENSE_KEY}"
 ```
 
 ## Running on other platforms
