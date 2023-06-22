@@ -34,17 +34,27 @@ pplx::task<http_response> validate_license_key(http_client client, const string 
 
 int main(int argc, char* argv[])
 {
-  if (argc == 1)
+  if (!getenv("KEYGEN_ACCOUNT_ID"))
+  {
+    cerr << "[ERROR] "
+         << "No KEYGEN_ACCOUNT_ID environment variable specified"
+         << endl;
+
+    return 1;
+  }
+
+  if (!argv[1])
   {
     cerr << "[ERROR] "
          << "No license key argument specified"
          << endl;
 
-    exit(1);
+    return 1;
   }
 
   string account_id = getenv("KEYGEN_ACCOUNT_ID");
   string license_key = argv[1];
+
   http_client client(uri("https://api.keygen.sh/v1/accounts/" + account_id));
 
   validate_license_key(client, license_key)
